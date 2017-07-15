@@ -15,12 +15,12 @@ class Card extends React.Component {
           this.props.reverse_image
         );
       }
-    }//imagePath
+    }//chooseImage
 
     return (
-      <div className="card">
+      <div onClick={this.props.onCardClick} className="card">
         <p>Card id: {this.props.id}</p>
-        <img src={chooseImage()}/>
+        <img className="cardImage" src={chooseImage()}/>
         <p>Name: {this.props.name}</p>
       </div>
     );

@@ -14,6 +14,7 @@ class CardSet extends React.Component {
           image={card.image}
           name={card.name}
           reverse_image={card.reverse_image}
+          onCardClick={this.props.onCardClick}
         />
       )
     })

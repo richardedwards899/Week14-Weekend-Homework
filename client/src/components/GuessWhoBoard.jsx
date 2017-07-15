@@ -69,11 +69,15 @@ class GuessWhoBoard extends React.Component {
     }
   }//constructor
 
+  onCardClick() {
+    console.log("Board hears a card click!");
+  }
+
   render() {
     return (
       <div className="guess-who-board">
         <h2>Guess Who!</h2>
-        <CardSet cards={this.state.cards}/>
+        <CardSet cards={this.state.cards} onCardClick={this.onCardClick.bind(this)}/>
         <h2>Ask your question</h2>
         {/* <QuestionBox /> */}
       </div>
