@@ -69,8 +69,9 @@ class GuessWhoBoard extends React.Component {
     }
   }//constructor
 
-  onCardClick() {
+  onCardClick(card) {
     console.log("Board hears a card click!");
+    console.log("card id: ", card.props.id);
   }
 
   render() {
