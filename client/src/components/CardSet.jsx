@@ -7,12 +7,19 @@ class CardSet extends React.Component {
 
     const cards = this.props.cards.map((card) => {
       return (
-        <Card key={card.id} image={card.image} name={card.name}/>
+        <Card
+          key={card.id}
+          id={card.id}
+          showCard={card.showCard}
+          image={card.image}
+          name={card.name}
+          reverse_image={card.reverse_image}
+        />
       )
     })
 
     return (
-      <div className="comment-list">
+      <div className="card-set">
         {cards}
       </div>
     )

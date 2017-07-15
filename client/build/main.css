@@ -1,0 +1,13 @@
+.card-set {
+  background-color: pink;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+
+  background-color: yellow;
+
+}

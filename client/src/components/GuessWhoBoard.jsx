@@ -23,7 +23,8 @@ class GuessWhoBoard extends React.Component {
           moustache: true,
           glasses: false,
           showCard: true,
-          image: 'images/alex.jpg'
+          image: 'images/alex.jpg',
+          reverse_image: 'images/reverse.jpg'
         },
         {
           id: 1,
@@ -35,7 +36,8 @@ class GuessWhoBoard extends React.Component {
           moustache: true,
           glasses: false,
           showCard: true,
-          image: 'images/alfred.jpg'
+          image: 'images/alfred.jpg',
+          reverse_image: 'images/reverse.jpg'
         },
         {
           id: 2,
@@ -47,7 +49,8 @@ class GuessWhoBoard extends React.Component {
           moustache: false,
           glasses: false,
           showCard: true,
-          image: 'images/anita.jpg'
+          image: 'images/anita.jpg',
+          reverse_image: 'images/reverse.jpg'
         },
         {
           id: 3,
@@ -58,8 +61,9 @@ class GuessWhoBoard extends React.Component {
           beard: false,
           moustache: false,
           glasses: false,
-          showCard: true,
-          image: 'images/anne.jpg'
+          showCard: false,
+          image: 'images/anne.jpg',
+          reverse_image: 'images/reverse.jpg'
         }
       ]
     }
@@ -74,8 +78,8 @@ class GuessWhoBoard extends React.Component {
         {/* <QuestionBox /> */}
       </div>
     )
-  }
+  }//render
 
-}
+}//GuessWhoBoard
 
 export default GuessWhoBoard
