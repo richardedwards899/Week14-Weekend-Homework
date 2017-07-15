@@ -1,5 +1,5 @@
 import React from 'react'
-// import CommentList from './CommentList'
+import CardSet from './CardSet'
 // import CommentForm from './CommentForm'
 
 class GuessWhoBoard extends React.Component {
@@ -22,7 +22,8 @@ class GuessWhoBoard extends React.Component {
           beard: false,
           moustache: true,
           glasses: false,
-          showCard: true
+          showCard: true,
+          image: 'images/alex.jpg'
         },
         {
           id: 1,
@@ -33,7 +34,8 @@ class GuessWhoBoard extends React.Component {
           beard: false,
           moustache: true,
           glasses: false,
-          showCard: true
+          showCard: true,
+          image: 'images/alfred.jpg'
         },
         {
           id: 2,
@@ -44,7 +46,8 @@ class GuessWhoBoard extends React.Component {
           beard: false,
           moustache: false,
           glasses: false,
-          showCard: true
+          showCard: true,
+          image: 'images/anita.jpg'
         },
         {
           id: 3,
@@ -55,7 +58,8 @@ class GuessWhoBoard extends React.Component {
           beard: false,
           moustache: false,
           glasses: false,
-          showCard: true
+          showCard: true,
+          image: 'images/anne.jpg'
         }
       ]
     }
@@ -65,7 +69,7 @@ class GuessWhoBoard extends React.Component {
     return (
       <div className="guess-who-board">
         <h2>Guess Who!</h2>
-        {/* <CardSet /> */}
+        <CardSet cards={this.state.cards}/>
         <h2>Ask your question</h2>
         {/* <QuestionBox /> */}
       </div>
