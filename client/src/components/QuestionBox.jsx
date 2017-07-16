@@ -22,6 +22,8 @@ class QuestionBox extends React.Component {
         <button id="beard_question" onClick={this.handleButtonClick.bind(this)}>Ask!</button>
         <div className="question">Do they have a moustache?</div>
         <button id="moustache_question" onClick={this.handleButtonClick.bind(this)}>Ask!</button>
+        <div className="question">Do they have glasses?</div>
+        <button id="glasses_question" onClick={this.handleButtonClick.bind(this)}>Ask!</button>
       </div>
     );
   }//render

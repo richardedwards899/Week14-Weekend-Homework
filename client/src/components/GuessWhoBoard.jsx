@@ -165,6 +165,19 @@ class GuessWhoBoard extends React.Component {
         }
         break;
 
+      case "glasses_question":
+
+        answer = this.compareAgainstChosenCard("glasses", true);
+
+        if (answer){
+          this.setState({answer: "Yes, they have glasses! Now you can flip over all faces without glasses..."});
+          this.makeCardsFlippable("glasses", false);
+        } else {
+          this.setState({answer: "No, they don't have glasses. Now you can flip over all faces with glasses..."});
+          this.makeCardsFlippable("glasses", true);
+        }
+        break;
+
 
 
       default:
