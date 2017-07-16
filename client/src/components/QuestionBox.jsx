@@ -18,8 +18,8 @@ class QuestionBox extends React.Component {
   render() {
 
     return (
-      <div>
-        <h2>{this.props.answer}</h2>
+      <div className={this.props.className}>
+        <h2 id="feedback">{this.props.answer}</h2>
         <div className="question">Are they a man?</div>
         <button id="man_question" onClick={this.handleButtonClick.bind(this)}>Ask!</button>
 

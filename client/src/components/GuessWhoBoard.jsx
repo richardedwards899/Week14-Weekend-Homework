@@ -11,11 +11,15 @@ class GuessWhoBoard extends React.Component {
 
     //State will need to hold all the FaceCard information, and the index of the selected FaceCard
     this.state = {
-      selectedCardIndex: 3,
+      selectedCardIndex: this.pickANumber(24),
       answer: "Please click a button below to ask a question :)",
       cards: cardCollection,
     }
   }//constructor
+
+  pickANumber(max){
+    return Math.floor((Math.random() * max));
+  }
 
   compareAgainstChosenCard(key, value){
     const selectedCard = this.state.cards[this.state.selectedCardIndex];
@@ -38,19 +42,14 @@ class GuessWhoBoard extends React.Component {
     const cards = this.state.cards;
 
     cards.forEach(function(card){
-
       if (this.containsValue(card[key], valueArray)) {
         card.flippable = true;
       }
     }.bind(this));
-
     this.setState({cards: cards});
   }
 
-
-
   handleQuestion(questionType){
-    console.log("questionType: ", questionType);
 
     let answer = null;
 
@@ -60,10 +59,10 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("male", true);
 
         if (answer){
-          this.setState({answer: "Yes, it's a man! Now you can flip over all the female cards..."});
+          this.setState({answer: "Yes, it's a man!  You can flip over all the female cards..."});
           this.makeCardsFlippable("male", [false]);
         } else {
-          this.setState({answer: "No, it's not a man. You can flip over all the male cards..."});
+          this.setState({answer: "No, it's not a man.  You can flip over all the male cards..."});
           this.makeCardsFlippable("male", [true]);
         }
         break;
@@ -73,7 +72,7 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("male", false);
 
         if (answer){
-          this.setState({answer: "Yes, it's a woman! Now you can flip over all the male cards..."});
+          this.setState({answer: "Yes, it's a woman!  You can flip over all the male cards..."});
           this.makeCardsFlippable("male", [true]);
         } else {
           this.setState({answer: "No, it's not a woman. You can flip over all the female cards..."});
@@ -86,10 +85,10 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("hat", true);
 
         if (answer){
-          this.setState({answer: "Yes, they're wearing a hat! Now you can flip over all faces without hats..."});
+          this.setState({answer: "Yes, they're wearing a hat! You can flip over all faces without hats..."});
           this.makeCardsFlippable("hat", [false]);
         } else {
-          this.setState({answer: "No, they're not wearing a hat. Now you can flip over all faces wearing hats..."});
+          this.setState({answer: "No, they're not wearing a hat. You can flip over all faces wearing hats..."});
           this.makeCardsFlippable("hat", [true]);
         }
         break;
@@ -99,10 +98,10 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("beard", true);
 
         if (answer){
-          this.setState({answer: "Yes, they have a beard! Now you can flip over all faces without a beard..."});
+          this.setState({answer: "Yes, they have a beard!  You can flip over all faces without a beard..."});
           this.makeCardsFlippable("beard", [false]);
         } else {
-          this.setState({answer: "No, they don't have a beard. Now you can flip over all faces with beards..."});
+          this.setState({answer: "No, they don't have a beard. You can flip over all faces with beards..."});
           this.makeCardsFlippable("beard", [true]);
         }
         break;
@@ -112,10 +111,10 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("moustache", true);
 
         if (answer){
-          this.setState({answer: "Yes, they have a moustache! Now you can flip over all faces without a moustache..."});
+          this.setState({answer: "Yes, they have a moustache!  You can flip over all faces without a moustache..."});
           this.makeCardsFlippable("moustache", [false]);
         } else {
-          this.setState({answer: "No, they don't have a moustache. Now you can flip over all faces with moustaches..."});
+          this.setState({answer: "No, they don't have a moustache. You can flip over all faces with moustaches..."});
           this.makeCardsFlippable("moustache", [true]);
         }
         break;
@@ -125,10 +124,10 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("glasses", true);
 
         if (answer){
-          this.setState({answer: "Yes, they have glasses! Now you can flip over all faces without glasses..."});
+          this.setState({answer: "Yes, they have glasses!  You can flip over all faces without glasses..."});
           this.makeCardsFlippable("glasses", [false]);
         } else {
-          this.setState({answer: "No, they don't have glasses. Now you can flip over all faces with glasses..."});
+          this.setState({answer: "No, they don't have glasses. You can flip over all faces with glasses..."});
           this.makeCardsFlippable("glasses", [true]);
         }
         break;
@@ -138,10 +137,10 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("hairColour", "Dark");
 
         if (answer){
-          this.setState({answer: "Yes, they have dark hair! Now you can flip over all anyone without dark hair..."});
+          this.setState({answer: "Yes, they have dark hair!  You can flip over all anyone without dark hair..."});
           this.makeCardsFlippable("hairColour", ['Brown', 'Ginger', 'Fair', 'White']);
         } else {
-          this.setState({answer: "No, they don't have dark hair. Now you can flip over anyone with dark hair..."});
+          this.setState({answer: "No, they don't have dark hair. You can flip over anyone with dark hair..."});
           this.makeCardsFlippable("hairColour", ['Dark']);
         }
         break;
@@ -151,10 +150,10 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("hairColour", "Brown");
 
         if (answer){
-          this.setState({answer: "Yes, they have brown hair! Now you can flip over all anyone without brown hair..."});
+          this.setState({answer: "Yes, they have brown hair!  You can flip over all anyone without brown hair..."});
           this.makeCardsFlippable("hairColour", ['Black', 'Ginger', 'Fair', 'White']);
         } else {
-          this.setState({answer: "No, they don't have brown hair. Now you can flip over anyone with brown hair..."});
+          this.setState({answer: "No, they don't have brown hair.  You can flip over anyone with brown hair..."});
           this.makeCardsFlippable("hairColour", ['Brown']);
         }
         break;
@@ -164,10 +163,10 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("hairColour", "Ginger");
 
         if (answer){
-          this.setState({answer: "Yes, they have ginger hair! Now you can flip over all anyone without ginger hair..."});
+          this.setState({answer: "Yes, they have ginger hair!  You can flip over all anyone without ginger hair..."});
           this.makeCardsFlippable("hairColour", ['Black', 'Brown', 'Fair', 'White']);
         } else {
-          this.setState({answer: "No, they don't have ginger hair. Now you can flip over anyone with ginger hair..."});
+          this.setState({answer: "No, they don't have ginger hair. You can flip over anyone with ginger hair..."});
           this.makeCardsFlippable("hairColour", ['Ginger']);
         }
         break;
@@ -177,11 +176,24 @@ class GuessWhoBoard extends React.Component {
         answer = this.compareAgainstChosenCard("hairColour", "Fair");
 
         if (answer){
-          this.setState({answer: "Yes, they have fair hair! Now you can flip over all anyone without fair hair..."});
+          this.setState({answer: "Yes, they have fair hair! You can flip over all anyone without fair hair..."});
           this.makeCardsFlippable("hairColour", ['Black', 'Brown', 'Ginger', 'White']);
         } else {
-          this.setState({answer: "No, they don't have fair hair. Now you can flip over anyone with fair hair..."});
+          this.setState({answer: "No, they don't have fair hair. You can flip over anyone with fair hair..."});
           this.makeCardsFlippable("hairColour", ['Fair']);
+        }
+        break;
+
+      case "White_hair_question":
+
+        answer = this.compareAgainstChosenCard("hairColour", "White");
+
+        if (answer){
+          this.setState({answer: "Yes, they have white hair! You can flip over all anyone without white hair..."});
+          this.makeCardsFlippable("hairColour", ['Black', 'Brown', 'Ginger', 'Fair']);
+        } else {
+          this.setState({answer: "No, they don't have white hair. You can flip over anyone with white hair..."});
+          this.makeCardsFlippable("hairColour", ['White']);
         }
         break;
 
@@ -213,12 +225,13 @@ class GuessWhoBoard extends React.Component {
   render() {
     return (
       <div className="guess-who-board">
-        <h2>Guess Who!</h2>
-        <CardSet cards={this.state.cards} onCardClick={this.onCardClick.bind(this)}/>
+        <h1 className="game-title">Guess Who!</h1>
         <QuestionBox
+          className="question-box"
           answer={this.state.answer}
           onAsk={this.handleQuestion.bind(this)}
         />
+        <CardSet cards={this.state.cards} onCardClick={this.onCardClick.bind(this)}/>
       </div>
     );
   }//render

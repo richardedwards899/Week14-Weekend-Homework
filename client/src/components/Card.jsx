@@ -21,9 +21,9 @@ class Card extends React.Component {
 
     return (
       <div onClick={this.handleClick.bind(this)} className="card">
-        <p>Card id: {this.props.id}</p>
+        {/* <p>Card id: {this.props.id}</p> */}
         <img className="cardImage" src={chooseImage()}/>
-        <p>Name: {this.props.name}</p>
+        {/* <p>Name: {this.props.name}</p> */}
       </div>
     );
   }//render
