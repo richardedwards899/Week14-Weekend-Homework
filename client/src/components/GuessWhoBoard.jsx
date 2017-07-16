@@ -24,7 +24,8 @@ class GuessWhoBoard extends React.Component {
           glasses: false,
           showCard: true,
           image: 'images/alex.jpg',
-          reverse_image: 'images/reverse.jpg'
+          reverse_image: 'images/reverse.jpg',
+          flippable: true
         },
         {
           id: 1,
@@ -37,7 +38,8 @@ class GuessWhoBoard extends React.Component {
           glasses: false,
           showCard: true,
           image: 'images/alfred.jpg',
-          reverse_image: 'images/reverse.jpg'
+          reverse_image: 'images/reverse.jpg',
+          flippable: false
         },
         {
           id: 2,
@@ -50,7 +52,8 @@ class GuessWhoBoard extends React.Component {
           glasses: false,
           showCard: true,
           image: 'images/anita.jpg',
-          reverse_image: 'images/reverse.jpg'
+          reverse_image: 'images/reverse.jpg',
+          flippable: false
         },
         {
           id: 3,
@@ -63,15 +66,32 @@ class GuessWhoBoard extends React.Component {
           glasses: false,
           showCard: false,
           image: 'images/anne.jpg',
-          reverse_image: 'images/reverse.jpg'
+          reverse_image: 'images/reverse.jpg',
+          flippable: false
         }
       ]
     }
   }//constructor
 
+  cardIsFlippable(cardID) {
+    const cardArray = this.state.cards;
+    const cardToCheck = cardArray[cardID];
+    console.log('Going to check card: ', cardToCheck);
+
+    return cardToCheck.flippable;
+  }
+
   onCardClick(card) {
-    console.log("Board hears a card click!");
     console.log("card id: ", card.props.id);
+    console.log("We're going to turn this card if it's flippable!");
+
+    if (this.cardIsFlippable(card.props.id)){
+      console.log("I'm flippable!");
+      //todo
+      //change the status of showCard to false for card with id = card.props.id
+    } else {
+      console.log("I'm not!");
+    }
   }
 
   render() {

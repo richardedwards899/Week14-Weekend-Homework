@@ -3,7 +3,6 @@ import React from 'react';
 class Card extends React.Component {
 
   handleClick(){
-    console.log("hullo");
     this.props.onCardClick(this);
   }
 
