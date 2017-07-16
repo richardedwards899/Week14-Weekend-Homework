@@ -172,6 +172,19 @@ class GuessWhoBoard extends React.Component {
         }
         break;
 
+      case "Fair_hair_question":
+
+        answer = this.compareAgainstChosenCard("hairColour", "Fair");
+
+        if (answer){
+          this.setState({answer: "Yes, they have fair hair! Now you can flip over all anyone without fair hair..."});
+          this.makeCardsFlippable("hairColour", ['Black', 'Brown', 'Ginger', 'White']);
+        } else {
+          this.setState({answer: "No, they don't have fair hair. Now you can flip over anyone with fair hair..."});
+          this.makeCardsFlippable("hairColour", ['Fair']);
+        }
+        break;
+
       default:
 
     }//switch
