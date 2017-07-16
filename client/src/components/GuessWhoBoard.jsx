@@ -1,7 +1,7 @@
 import React from 'react'
 import CardSet from './CardSet'
 import QuestionBox from './QuestionBox'
-var _ = require('lodash');
+import cardCollection from '../data/cardCollection.js'
 
 
 class GuessWhoBoard extends React.Component {
@@ -11,69 +11,9 @@ class GuessWhoBoard extends React.Component {
 
     //State will need to hold all the FaceCard information, and the index of the selected FaceCard
     this.state = {
-
       selectedCardIndex: 3,
-
       answer: "Please click a button below to ask a question :)",
-
-      cards: [
-        {
-          id: 0,
-          name: 'Alex',
-          male: true,
-          hairColour: 'Dark',
-          hat: false,
-          beard: false,
-          moustache: true,
-          glasses: false,
-          showCard: true,
-          image: 'images/alex.jpg',
-          reverse_image: 'images/reverse.jpg',
-          flippable: false
-        },
-        {
-          id: 1,
-          name: 'Alfred',
-          male: true,
-          hairColour: 'Ginger',
-          hat: false,
-          beard: false,
-          moustache: true,
-          glasses: false,
-          showCard: true,
-          image: 'images/alfred.jpg',
-          reverse_image: 'images/reverse.jpg',
-          flippable: false
-        },
-        {
-          id: 2,
-          name: 'Anita',
-          male: false,
-          hairColour: 'Fair',
-          hat: false,
-          beard: false,
-          moustache: false,
-          glasses: false,
-          showCard: true,
-          image: 'images/anita.jpg',
-          reverse_image: 'images/reverse.jpg',
-          flippable: false
-        },
-        {
-          id: 3,
-          name: 'Anne',
-          male: false,
-          hairColour: 'Dark',
-          hat: false,
-          beard: false,
-          moustache: false,
-          glasses: false,
-          showCard: true,
-          image: 'images/anne.jpg',
-          reverse_image: 'images/reverse.jpg',
-          flippable: false
-        }
-      ]
+      cards: cardCollection,
     }
   }//constructor
 
@@ -203,6 +143,32 @@ class GuessWhoBoard extends React.Component {
         } else {
           this.setState({answer: "No, they don't have dark hair. Now you can flip over anyone with dark hair..."});
           this.makeCardsFlippable("hairColour", ['Dark']);
+        }
+        break;
+
+      case "Brown_hair_question":
+
+        answer = this.compareAgainstChosenCard("hairColour", "Brown");
+
+        if (answer){
+          this.setState({answer: "Yes, they have brown hair! Now you can flip over all anyone without brown hair..."});
+          this.makeCardsFlippable("hairColour", ['Black', 'Ginger', 'Fair', 'White']);
+        } else {
+          this.setState({answer: "No, they don't have brown hair. Now you can flip over anyone with brown hair..."});
+          this.makeCardsFlippable("hairColour", ['Brown']);
+        }
+        break;
+
+      case "Ginger_hair_question":
+
+        answer = this.compareAgainstChosenCard("hairColour", "Ginger");
+
+        if (answer){
+          this.setState({answer: "Yes, they have ginger hair! Now you can flip over all anyone without ginger hair..."});
+          this.makeCardsFlippable("hairColour", ['Black', 'Brown', 'Fair', 'White']);
+        } else {
+          this.setState({answer: "No, they don't have ginger hair. Now you can flip over anyone with ginger hair..."});
+          this.makeCardsFlippable("hairColour", ['Ginger']);
         }
         break;
 
