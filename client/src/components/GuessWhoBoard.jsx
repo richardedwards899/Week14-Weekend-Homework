@@ -76,19 +76,26 @@ class GuessWhoBoard extends React.Component {
   cardIsFlippable(cardID) {
     const cardArray = this.state.cards;
     const cardToCheck = cardArray[cardID];
-    console.log('Going to check card: ', cardToCheck);
 
     return cardToCheck.flippable;
   }
 
   onCardClick(card) {
-    console.log("card id: ", card.props.id);
+    console.log("card: ", card);
     console.log("We're going to turn this card if it's flippable!");
 
     if (this.cardIsFlippable(card.props.id)){
-      console.log("I'm flippable!");
-      //todo
+
+      let cards = this.state.cards;
+      let cardToUpdate = cards[card.props.id];
+      console.log('cardToUpdate', cardToUpdate);
+
       //change the status of showCard to false for card with id = card.props.id
+      cardToUpdate.showCard = false;
+
+      //and update the state
+      this.setState( {cards: cards} );
+
     } else {
       console.log("I'm not!");
     }
