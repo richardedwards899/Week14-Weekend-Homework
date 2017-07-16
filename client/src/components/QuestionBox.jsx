@@ -11,9 +11,10 @@ class QuestionBox extends React.Component {
 
     return (
       <div>
-        <p>Are they a man?</p>
+        <h2>Answer: {this.props.answer}</h2>
+        <div className="question">Are they a man?</div>
         <button id="man_question" onClick={this.handleButtonClick.bind(this)}>Ask!</button>
-        <p>Are they a woman?</p>
+        <div className="question">Are they a woman?</div>
         <button id="woman_question" onClick={this.handleButtonClick.bind(this)}>Ask!</button>
       </div>
     );

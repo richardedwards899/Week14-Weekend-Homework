@@ -15,3 +15,9 @@
   width: 125px;
   height: 200px;
 }
+
+.question {
+  display: inline-block;
+  margin-right: 20px;
+  margin-left: 20px;
+}

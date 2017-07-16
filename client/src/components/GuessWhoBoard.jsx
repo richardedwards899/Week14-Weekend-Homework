@@ -10,7 +10,9 @@ class GuessWhoBoard extends React.Component {
     //State will need to hold all the FaceCard information, and the index of the selected FaceCard
     this.state = {
 
-      ID_OfCardToGuess: 0,
+      selectedCardIndex: 0,
+
+      answer: "Please click a button below to ask a question :)",
 
       cards: [
         {
@@ -73,11 +75,24 @@ class GuessWhoBoard extends React.Component {
     }
   }//constructor
 
+  compareAgainstChosenCard(key, value){
+    const selectedCard = this.state.cards[this.state.selectedCardIndex];
+    return selectedCard[key] === value;
+  }
+
   handleQuestion(questionType){
     console.log("questionType: ", questionType);
 
     switch (questionType) {
       case "man_question":
+        //Are they a man? We need to say Yes or No...
+        const answer = this.compareAgainstChosenCard("male", true);
+        console.log("ANSWER: ", answer);
+
+        if (answer){
+          this.setState({answer: "Yes, it's a man! Now you can flip over all the female cards..."});
+        }
+        //...and make all the No cards flippable
 
         break;
       case "woman_question":
@@ -114,7 +129,7 @@ class GuessWhoBoard extends React.Component {
         <h2>Guess Who!</h2>
         <CardSet cards={this.state.cards} onCardClick={this.onCardClick.bind(this)}/>
         <h2>Ask your question</h2>
-        <QuestionBox onAsk={this.handleQuestion.bind(this)} />
+        <QuestionBox answer={this.state.answer} onAsk={this.handleQuestion.bind(this)} />
       </div>
     );
   }//render
