@@ -103,20 +103,57 @@ class GuessWhoBoard extends React.Component {
       case "man_question":
 
         answer = this.compareAgainstChosenCard("male", true);
-        if (answer)
-          this.setState({answer: "Yes, it's a man! Now you can flip over all the female cards..."});
 
-        this.makeCardsFlippable("male", false);
+        if (answer){
+          this.setState({answer: "Yes, it's a man! Now you can flip over all the female cards..."});
+          this.makeCardsFlippable("male", false);
+        } else {
+          this.setState({answer: "No, it's not a man. You can flip over all the male cards..."});
+          this.makeCardsFlippable("male", true);
+        }
         break;
 
       case "woman_question":
 
         answer = this.compareAgainstChosenCard("male", false);
-        if (answer)
-          this.setState({answer: "Yes, it's a woman! Now you can flip over all the male cards..."});
 
-        this.makeCardsFlippable("male", true);
+        if (answer){
+          this.setState({answer: "Yes, it's a woman! Now you can flip over all the male cards..."});
+          this.makeCardsFlippable("male", true);
+        } else {
+          this.setState({answer: "No, it's not a woman. You can flip over all the female cards..."});
+          this.makeCardsFlippable("male", false);
+        }
         break;
+
+      case "hat_question":
+
+        answer = this.compareAgainstChosenCard("hat", true);
+
+        if (answer){
+          this.setState({answer: "Yes, they're wearing a hat! Now you can flip over all faces without hats..."});
+          this.makeCardsFlippable("hat", false);
+        } else {
+          this.setState({answer: "No, they're not wearing a hat. Now you can flip over all faces wearing hats..."});
+          this.makeCardsFlippable("hat", true);
+        }
+        break;
+
+      case "beard_question":
+
+        answer = this.compareAgainstChosenCard("beard", true);
+
+        if (answer){
+          this.setState({answer: "Yes, they have a beard! Now you can flip over all faces without a beard..."});
+          this.makeCardsFlippable("beard", false);
+        } else {
+          this.setState({answer: "No, they don't have a beard. Now you can flip over all faces with beards..."});
+          this.makeCardsFlippable("beard", true);
+        }
+        break;
+
+
+
       default:
 
     }//switch
