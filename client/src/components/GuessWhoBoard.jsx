@@ -1,6 +1,8 @@
 import React from 'react'
 import CardSet from './CardSet'
 import QuestionBox from './QuestionBox'
+var _ = require('lodash');
+
 
 class GuessWhoBoard extends React.Component {
 
@@ -80,14 +82,27 @@ class GuessWhoBoard extends React.Component {
     return selectedCard[key] === value;
   }
 
-  makeCardsFlippable(key, value){
-    const cards = this.state.cards;
-
-    cards.forEach(function(card, index){
-      if (card[key] === value){
-        card.flippable = true;
+  containsValue(value, array){
+    let counter = 0;
+    let found = false;
+    array.forEach(function(item, index){
+      if (item === value){
+        found = true;
       }
     });
+    return found;
+  }
+
+  //set flippable to true for each card if its 'key' field value can be found within valueArray.
+  makeCardsFlippable(key, valueArray){
+    const cards = this.state.cards;
+
+    cards.forEach(function(card){
+
+      if (this.containsValue(card[key], valueArray)) {
+        card.flippable = true;
+      }
+    }.bind(this));
 
     this.setState({cards: cards});
   }
@@ -106,10 +121,10 @@ class GuessWhoBoard extends React.Component {
 
         if (answer){
           this.setState({answer: "Yes, it's a man! Now you can flip over all the female cards..."});
-          this.makeCardsFlippable("male", false);
+          this.makeCardsFlippable("male", [false]);
         } else {
           this.setState({answer: "No, it's not a man. You can flip over all the male cards..."});
-          this.makeCardsFlippable("male", true);
+          this.makeCardsFlippable("male", [true]);
         }
         break;
 
@@ -119,10 +134,10 @@ class GuessWhoBoard extends React.Component {
 
         if (answer){
           this.setState({answer: "Yes, it's a woman! Now you can flip over all the male cards..."});
-          this.makeCardsFlippable("male", true);
+          this.makeCardsFlippable("male", [true]);
         } else {
           this.setState({answer: "No, it's not a woman. You can flip over all the female cards..."});
-          this.makeCardsFlippable("male", false);
+          this.makeCardsFlippable("male", [false]);
         }
         break;
 
@@ -132,10 +147,10 @@ class GuessWhoBoard extends React.Component {
 
         if (answer){
           this.setState({answer: "Yes, they're wearing a hat! Now you can flip over all faces without hats..."});
-          this.makeCardsFlippable("hat", false);
+          this.makeCardsFlippable("hat", [false]);
         } else {
           this.setState({answer: "No, they're not wearing a hat. Now you can flip over all faces wearing hats..."});
-          this.makeCardsFlippable("hat", true);
+          this.makeCardsFlippable("hat", [true]);
         }
         break;
 
@@ -145,10 +160,10 @@ class GuessWhoBoard extends React.Component {
 
         if (answer){
           this.setState({answer: "Yes, they have a beard! Now you can flip over all faces without a beard..."});
-          this.makeCardsFlippable("beard", false);
+          this.makeCardsFlippable("beard", [false]);
         } else {
           this.setState({answer: "No, they don't have a beard. Now you can flip over all faces with beards..."});
-          this.makeCardsFlippable("beard", true);
+          this.makeCardsFlippable("beard", [true]);
         }
         break;
 
@@ -158,10 +173,10 @@ class GuessWhoBoard extends React.Component {
 
         if (answer){
           this.setState({answer: "Yes, they have a moustache! Now you can flip over all faces without a moustache..."});
-          this.makeCardsFlippable("moustache", false);
+          this.makeCardsFlippable("moustache", [false]);
         } else {
           this.setState({answer: "No, they don't have a moustache. Now you can flip over all faces with moustaches..."});
-          this.makeCardsFlippable("moustache", true);
+          this.makeCardsFlippable("moustache", [true]);
         }
         break;
 
@@ -171,20 +186,31 @@ class GuessWhoBoard extends React.Component {
 
         if (answer){
           this.setState({answer: "Yes, they have glasses! Now you can flip over all faces without glasses..."});
-          this.makeCardsFlippable("glasses", false);
+          this.makeCardsFlippable("glasses", [false]);
         } else {
           this.setState({answer: "No, they don't have glasses. Now you can flip over all faces with glasses..."});
-          this.makeCardsFlippable("glasses", true);
+          this.makeCardsFlippable("glasses", [true]);
         }
         break;
 
+      case "Dark_hair_question":
 
+        answer = this.compareAgainstChosenCard("hairColour", "Dark");
+
+        if (answer){
+          this.setState({answer: "Yes, they have dark hair! Now you can flip over all anyone without dark hair..."});
+          this.makeCardsFlippable("hairColour", ['Brown', 'Ginger', 'Fair', 'White']);
+        } else {
+          this.setState({answer: "No, they don't have dark hair. Now you can flip over anyone with dark hair..."});
+          this.makeCardsFlippable("hairColour", ['Dark']);
+        }
+        break;
 
       default:
 
     }//switch
 
-  }
+  }//handleQuestion
 
   cardIsFlippable(cardID) {
     const cardArray = this.state.cards;
@@ -210,8 +236,10 @@ class GuessWhoBoard extends React.Component {
       <div className="guess-who-board">
         <h2>Guess Who!</h2>
         <CardSet cards={this.state.cards} onCardClick={this.onCardClick.bind(this)}/>
-        <h2>Ask your question</h2>
-        <QuestionBox answer={this.state.answer} onAsk={this.handleQuestion.bind(this)} />
+        <QuestionBox
+          answer={this.state.answer}
+          onAsk={this.handleQuestion.bind(this)}
+        />
       </div>
     );
   }//render
