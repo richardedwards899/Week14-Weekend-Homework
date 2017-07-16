@@ -152,6 +152,19 @@ class GuessWhoBoard extends React.Component {
         }
         break;
 
+      case "moustache_question":
+
+        answer = this.compareAgainstChosenCard("moustache", true);
+
+        if (answer){
+          this.setState({answer: "Yes, they have a moustache! Now you can flip over all faces without a moustache..."});
+          this.makeCardsFlippable("moustache", false);
+        } else {
+          this.setState({answer: "No, they don't have a moustache. Now you can flip over all faces with moustaches..."});
+          this.makeCardsFlippable("moustache", true);
+        }
+        break;
+
 
 
       default:
