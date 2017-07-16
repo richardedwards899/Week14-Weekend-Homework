@@ -1,6 +1,6 @@
 import React from 'react'
 import CardSet from './CardSet'
-// import CommentForm from './CommentForm'
+import QuestionBox from './QuestionBox'
 
 class GuessWhoBoard extends React.Component {
 
@@ -25,7 +25,7 @@ class GuessWhoBoard extends React.Component {
           showCard: true,
           image: 'images/alex.jpg',
           reverse_image: 'images/reverse.jpg',
-          flippable: true
+          flippable: false
         },
         {
           id: 1,
@@ -64,7 +64,7 @@ class GuessWhoBoard extends React.Component {
           beard: false,
           moustache: false,
           glasses: false,
-          showCard: false,
+          showCard: true,
           image: 'images/anne.jpg',
           reverse_image: 'images/reverse.jpg',
           flippable: false
@@ -72,6 +72,22 @@ class GuessWhoBoard extends React.Component {
       ]
     }
   }//constructor
+
+  handleQuestion(questionType){
+    console.log("questionType: ", questionType);
+
+    switch (questionType) {
+      case "man_question":
+
+        break;
+      case "woman_question":
+
+        break;
+      default:
+
+    }//switch
+
+  }
 
   cardIsFlippable(cardID) {
     const cardArray = this.state.cards;
@@ -82,22 +98,13 @@ class GuessWhoBoard extends React.Component {
 
   onCardClick(card) {
     console.log("card: ", card);
-    console.log("We're going to turn this card if it's flippable!");
 
     if (this.cardIsFlippable(card.props.id)){
-
       let cards = this.state.cards;
       let cardToUpdate = cards[card.props.id];
-      console.log('cardToUpdate', cardToUpdate);
 
-      //change the status of showCard to false for card with id = card.props.id
       cardToUpdate.showCard = false;
-
-      //and update the state
       this.setState( {cards: cards} );
-
-    } else {
-      console.log("I'm not!");
     }
   }
 
@@ -107,9 +114,9 @@ class GuessWhoBoard extends React.Component {
         <h2>Guess Who!</h2>
         <CardSet cards={this.state.cards} onCardClick={this.onCardClick.bind(this)}/>
         <h2>Ask your question</h2>
-        {/* <QuestionBox /> */}
+        <QuestionBox onAsk={this.handleQuestion.bind(this)} />
       </div>
-    )
+    );
   }//render
 
 }//GuessWhoBoard
