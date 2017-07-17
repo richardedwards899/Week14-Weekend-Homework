@@ -164,7 +164,7 @@ class GuessWhoBoard extends React.Component {
 
         if (answer){
           this.setState({answer: "Yes, they have ginger hair!  You can flip over all anyone without ginger hair..."});
-          this.makeCardsFlippable("hairColour", ['Black', 'Brown', 'Fair', 'White']);
+          this.makeCardsFlippable("hairColour", ['Dark', 'Brown', 'Fair', 'White']);
         } else {
           this.setState({answer: "No, they don't have ginger hair. You can flip over anyone with ginger hair..."});
           this.makeCardsFlippable("hairColour", ['Ginger']);
